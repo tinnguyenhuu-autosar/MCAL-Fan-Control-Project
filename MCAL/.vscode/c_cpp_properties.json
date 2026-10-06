@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "Tin Nguyen",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/MCAL/platform/bsp/cmsis",
+                "${workspaceFolder}/MCAL/platform/spl/inc",
+                "${workspaceFolder}/MCAL/Types",
+                "C:\\Program Files (x86)\\Arm\\GNU Toolchain mingw-w64-i686-arm-none-eabi\\arm-none-eabi\\include",
+                "C:\\Program Files (x86)\\Arm\\GNU Toolchain mingw-w64-i686-arm-none-eabi\\lib\\gcc\\arm-none-eabi\\15.2.1\\include"
+            ],
+            "defines": [
+                "STM32F10X_MD",
+                "USE_STDPERIPH_DRIVER",
+                "HSE_VALUE=8000000"
+            ],
+            "macFrameworkPath": [],
+            "compilerPath": "C:\\Program Files (x86)\\Arm\\GNU Toolchain mingw-w64-i686-arm-none-eabi\\bin\\arm-none-eabi-gcc.exe",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "windows-gcc-arm"
+        }
+    ],
+    "version": 4
+}

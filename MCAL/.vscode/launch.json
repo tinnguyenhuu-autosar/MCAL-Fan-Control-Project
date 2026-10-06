@@ -1,0 +1,103 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Fan Control project",
+      "type": "hala-sim-zmu",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/hala-sim/bluepill1.elf",
+      "hsim": "file:///e%3A/AUTOSAR_Tai_Lieu/Project_FanConTrol_AUTOSAR/simulator/Project_FanConTrol_AUTOSAR.hsim",
+      "targetId": "bluepill1",
+      "buildBeforeDebug": true,
+      "stopOnEntry": true,
+      "initialBreakpoints": [
+        {
+          "file": "src/main.c",
+          "line": 12
+        }
+      ],
+      "halaSimManaged": true
+    },
+    {
+      "name": "HW Debug",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      "gdbPath": "arm-none-eabi-gdb",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/FIRMWARE.elf",
+      "device": "STM32F103C8T6",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f1x.cfg"
+      ],
+      "svdFile": "${workspaceFolder}/platform/debug/STM32F103.svd",
+      "runToEntryPoint": "main",
+      "stopAtEntry": true,
+      "postLaunchCommands": [
+        "monitor reset halt",
+        "load"
+      ],
+      "postRestartCommands": [
+        "monitor reset halt",
+        "load"
+      ],
+      "showDevDebugOutput": "none",
+      "liveWatch": {
+        "enabled": false
+      },
+      "preLaunchTask": "Make: build",
+      "svdAddrGapThreshold": 16,
+      "registers": [
+        "r0",
+        "r1",
+        "r2",
+        "r3",
+        "r12",
+        "lr",
+        "pc",
+        "xPSR",
+        "sp",
+        "msp",
+        "psp"
+      ]
+    },
+    {
+      "name": "Renode Debug",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "external",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/FIRMWARE.elf",
+      "device": "STM32F103C8T6",
+      "gdbPath": "arm-none-eabi-gdb",
+      "gdbTarget": "localhost:3333",
+      "runToEntryPoint": "main",
+      "stopAtEntry": false,
+      "postLaunchCommands": [
+        "monitor reset",
+        "monitor start"
+      ],
+      "showDevDebugOutput": "none",
+      "liveWatch": {
+        "enabled": false
+      },
+      "preLaunchTask": "Make: build",
+      "postDebugTask": "Renode: cleanup",
+      "svdAddrGapThreshold": 16,
+      "registers": [
+        "r0",
+        "r1",
+        "r2",
+        "r3",
+        "r12",
+        "lr",
+        "pc",
+        "xPSR",
+        "sp",
+        "msp",
+        "psp"
+      ]
+    }
+  ]
+}
